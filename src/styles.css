@@ -97,6 +97,52 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
+/* ApratimTab design tokens — glassmorphism dashboard shell */
+:root {
+  --apt-bg-gradient: radial-gradient(1200px 800px at 10% -10%, oklch(0.35 0.12 265) 0%, transparent 50%),
+    radial-gradient(1000px 700px at 100% 10%, oklch(0.38 0.14 20) 0%, transparent 55%),
+    linear-gradient(180deg, oklch(0.16 0.03 265) 0%, oklch(0.10 0.02 265) 100%);
+  --apt-panel: color-mix(in oklab, oklch(0.16 0.02 265) 60%, transparent);
+  --apt-panel-strong: color-mix(in oklab, oklch(0.18 0.02 265) 82%, transparent);
+  --apt-tile: color-mix(in oklab, oklch(1 0 0) 6%, transparent);
+  --apt-tile-hover: color-mix(in oklab, oklch(1 0 0) 10%, transparent);
+  --apt-icon-bg: color-mix(in oklab, oklch(1 0 0) 10%, transparent);
+  --apt-hover: color-mix(in oklab, oklch(1 0 0) 6%, transparent);
+  --apt-active: color-mix(in oklab, oklch(1 0 0) 10%, transparent);
+  --apt-border: color-mix(in oklab, oklch(1 0 0) 8%, transparent);
+  --apt-accent-2: oklch(0.72 0.19 20);
+}
+
+html, body, #root { height: 100%; }
+html { color-scheme: dark; }
+body {
+  background: var(--apt-bg-gradient);
+  color: oklch(0.98 0.003 247);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  /* Dark-first palette for ApratimTab */
+  --background: oklch(0.14 0.02 265);
+  --foreground: oklch(0.98 0.003 247);
+  --card: oklch(0.18 0.02 265);
+  --card-foreground: oklch(0.98 0.003 247);
+  --popover: oklch(0.18 0.02 265);
+  --popover-foreground: oklch(0.98 0.003 247);
+  --primary: oklch(0.72 0.17 265);
+  --primary-foreground: oklch(0.14 0.02 265);
+  --secondary: oklch(0.24 0.02 265);
+  --secondary-foreground: oklch(0.98 0.003 247);
+  --muted: oklch(0.24 0.02 265);
+  --muted-foreground: oklch(0.72 0.02 265);
+  --accent: oklch(0.28 0.05 265);
+  --accent-foreground: oklch(0.98 0.003 247);
+  --border: color-mix(in oklab, oklch(1 0 0) 10%, transparent);
+  --input: color-mix(in oklab, oklch(1 0 0) 10%, transparent);
+  --ring: oklch(0.72 0.17 265);
+}
+
 .dark {
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
