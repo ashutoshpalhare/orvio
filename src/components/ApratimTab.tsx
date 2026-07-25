@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Settings, Info, User, Plus, Download } from "lucide-react";
 import { useApratimStore } from "@/stores/useApratimStore";
@@ -26,11 +26,11 @@ function Greeting({ name }: { name: string }) {
 }
 
 function Clock() {
-  const [now, setNow] = useState(new Date());
-  useState(() => {
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000 * 30);
     return () => clearInterval(id);
-  });
+  }, []);
   return (
     <div className="text-xs text-muted-foreground tabular-nums">
       {now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
