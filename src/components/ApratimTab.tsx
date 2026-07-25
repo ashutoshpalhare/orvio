@@ -16,24 +16,33 @@ import {
 } from "@/components/ui/tooltip";
 
 function Greeting({ name }: { name: string }) {
-  const h = new Date().getHours();
-  const g = h < 5 ? "Good night" : h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening";
+  const [g, setG] = useState<string | null>(null);
+  useEffect(() => {
+    const compute = () => {
+      const h = new Date().getHours();
+      setG(h < 5 ? "Good night" : h < 12 ? "Good morning" : h < 17 ? "Good afternoon" : "Good evening");
+    };
+    compute();
+    const id = setInterval(compute, 60_000);
+    return () => clearInterval(id);
+  }, []);
   return (
     <div className="text-xs text-muted-foreground">
-      {g}, <span className="text-foreground font-medium">{name}</span>
+      {g ?? "Hello"}, <span className="text-foreground font-medium">{name}</span>
     </div>
   );
 }
 
 function Clock() {
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
   useEffect(() => {
+    setNow(new Date());
     const id = setInterval(() => setNow(new Date()), 1000 * 30);
     return () => clearInterval(id);
   }, []);
   return (
     <div className="text-xs text-muted-foreground tabular-nums">
-      {now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+      {now ? now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "--:--"}
     </div>
   );
 }
